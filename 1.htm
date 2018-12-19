@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AngularJS</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<style type="text/css">
+		input.ng-invalid{
+			background-color: aqua;
+		}
+	</style>
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myctrl" ng-init="mycol='aqua'" name="calc">
+	<p>1st number:<input type="number" name="" ng-model="one" required ng-init="one=0"></p>
+	<span ng-show="calc.num1.$error.number">Not a Valid Number</span><br>
+	<p>1st number:<input type="number" name="num2" ng-model="two" required ng-init="two=0"></p>
+	<span ng-show="calc.num2.$error.number">Not a Valid Number</span>
+	<div style="background-color: {{mycol}}" ng-click="change()">{{one*two}}</div>
+	<div style="background-color: red" ng-click="change()">{{product}}</div>
+
+</div>
+<script >
+	var app=angular.module('myapp',[]);
+	app.controller('myctrl',function($scope){
+
+		$scope.change=function(){
+			$scope.product='Voila';
+		}
+	})
+
+
+</script>
+
+</body>
+</html>
