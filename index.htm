@@ -3,14 +3,21 @@
 <head>
 	<title>AngularJS</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
 	<style type="text/css">
 		input.ng-invalid{
 			background-color: aqua;
 		}
+		div {
+  transition: all linear 0.5s;
+  
+  
+}
 	</style>
 </head>
 <body>
-<div ng-app="myapp" ng-controller="myctrl" ng-init="mycol='aqua'" name="calc">
+<div ng-app="myapp" ng-controller="myctrl" ng-init="mycol='aqua'" ng-hide="mycheck" name="calc">
 	<p>1st number:<input type="number" name="" ng-model="one" required ng-init="one=0"></p>
 	<span ng-show="calc.num1.$error.number">Not a Valid Number</span><br>
 	<p>1st number:<input type="number" name="num2" ng-model="two" required ng-init="two=0"></p>
@@ -18,29 +25,32 @@
 	<div style="background-color: {{mycol}}" ng-click="change()">{{one*two}}</div>
 	<div>Click Answer to see magic</div>
 	<div style="background-color: red" ng-click="change()">{{product}}</div>
-	<div style="background-color: #1504b5" ng-click="change()">{{product}}</div>
+	<div style="background-color: #1504b5" ng-click="change()" ng-hide="mycheck">{{product}}</div>
 
-<div style="background-color: green" ng-click="change()">{{product}}</div>
+<div style="background-color: green" ng-click="change()" ng-hide="mycheck">{{product}}</div>
 
-<div style="background-color: blue" ng-click="change()">{{product}}</div>
+<div style="background-color: blue" ng-click="change()" ng-hide="mycheck">{{product}}</div>
 
-<div style="background-color: yellow" ng-click="change()">{{product}}</div>
+<div style="background-color: yellow" ng-click="change()" ng-hide="mycheck">{{product}}</div>
 
-<div style="background-color: aqua" ng-click="change()">{{product}}</div>
+<div style="background-color: aqua" ng-click="change()" ng-hide="mycheck">{{product}}</div>
 
-<div style="background-color: black" ng-click="change()">{{product}}</div>
+<div style="background-color: black" ng-click="change()" ng-hide="mycheck">{{product}}</div>
 
-<div style="background-color: orange" ng-click="change()">{{product}}</div>
+<div style="background-color: orange" ng-hide="mycheck" ng-click="change()" >{{product}}</div>
 
-<div style="background-color: white" ng-click="change()">{{product}}</div>
+<div style="background-color: white" ng-hide="mycheck" ng-click="change()" >{{product}}</div>
 
+<div style="background-color: white" ng-mousemove="count=count+1"">Hover Over ME</div>
+<div ng-bind="count"></div>
 
 
 </div>
+Clear Screen<input type="checkbox" ng-model="mycheck" name="">
 <script >
-	var app=angular.module('myapp',[]);
+	var app=angular.module('myapp',['ngAnimate']);
 	app.controller('myctrl',function($scope){
-
+		$scope.count=0;
 		$scope.change=function(){
 			$scope.product='Voila';
 		}
